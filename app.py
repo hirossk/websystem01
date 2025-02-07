@@ -54,7 +54,9 @@ def deleteitem():
     if cart_item:
         carts.remove(cart_item)
     
-    return render_template('cartitem.html', carts=carts)
+    total_price = sum(cart['price'] * cart['quantity'] for cart in carts)
+    
+    return render_template('cartitem.html', carts=carts, total_price=total_price)
 
 @app.route('/logincheck', methods=['POST'])
 def logincheck():
