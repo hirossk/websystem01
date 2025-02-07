@@ -40,7 +40,9 @@ def cartin():
     else:
         carts.append({'code': product['code'], 'name': product['name'], 'price': product['price'], 'quantity': 1})
     
-    return render_template('cartitem.html', carts=carts)
+    total_price = sum(cart['price'] * cart['quantity'] for cart in carts)
+    
+    return render_template('cartitem.html', carts=carts, total_price=total_price)
 
 @app.route('/deleteitem', methods=['POST'])
 def deleteitem():
