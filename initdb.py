@@ -30,7 +30,7 @@ class Cart(db.Model):
     item = db.relationship('Item', backref=db.backref('carts', lazy=True))
 
 # Check if the database file exists in the instance folder, and delete it if it does.
-db_path = os.path.join(os.path.dirname(__file__), 'instance', 'site.db')
+db_path = 'instance/site.db'
 if os.path.exists(db_path):
     os.remove(db_path)
     print(f"Existing database '{db_path}' deleted.")
