@@ -40,7 +40,7 @@ def cartin():
         return redirect('/')
 
     code = request.args.get('code')
-    user_id = 1  # 仮のユーザーID、実際にはログインユーザーのIDを使用する
+    user_id = session['user_id']  # 仮のユーザーID、実際にはログインユーザーのIDを使用する
 
     product = Item.query.filter_by(code=int(code)).first()
     cart_item = Cart.query.filter_by(user_id=user_id, item_id=product.id).first()
@@ -64,7 +64,7 @@ def deleteitem():
         return redirect('/')
     
     code = request.form['code']
-    user_id = 1  # 仮のユーザーID、実際にはログインユーザーのIDを使用する
+    user_id = session['user_id']  # 仮のユーザーID、実際にはログインユーザーのIDを使用する
 
     product = Item.query.filter_by(code=int(code)).first()
     if product:
