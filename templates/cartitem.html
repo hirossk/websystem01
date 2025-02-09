@@ -33,7 +33,7 @@
             </div>
 
             <!-- 削除ボタン -->
-            <form action="/deleteitem" method="post">
+            <form action="{{ url_for('cart.delete') }}" method="post">
                 <input type="hidden" name="code" value="{{ cart.code }}">
                 <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">削除</button>
             </form>
@@ -43,7 +43,7 @@
 
     <!-- 商品一覧へ戻る -->
     <div class="mt-6 text-center">
-        <a href="/list" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600">
+        <a href="{{ url_for('items.list') }}" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600">
             商品一覧へ戻る
         </a>
     </div>

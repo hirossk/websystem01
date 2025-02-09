@@ -30,7 +30,7 @@
             </div>
 
             <!-- カートに入れるボタン -->
-            <form action="/cartin" method="get" class="ml-auto flex items-center">
+            <form action="{{ url_for('cart.add') }}" method="get" class="ml-auto flex items-center">
                 <input type="hidden" name="code" value="{{ item.code }}">
                 <button class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">
                     カートに入れる
