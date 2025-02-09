@@ -1,15 +1,14 @@
-from flask import Flask, render_template, request, redirect
-from models import db, User, Item, Cart  # models.py からインポート
-import hashlib
-from flask import session
+from flask import Flask, render_template, request, redirect, session, Blueprint
 from flask_ngrok import run_with_ngrok
+from pyngrok import ngrok
+import hashlib
 import os
 
-app = Flask(__name__)
+# 実行用モジュールのコード
+from models import db, User, Item, Cart 
 
-# Google Colaboratoryで実行する場合、ngrokを使用
-if 'COLAB_GPU' in os.environ:
-    run_with_ngrok(app)
+
+app = Flask(__name__)
 
 app.secret_key = '0000'  # セッションを使用するための秘密鍵を設定
 
@@ -125,5 +124,15 @@ def logout():
     global_user_name = None
     return redirect('/')
 
+
+# Google Colaboratoryで実行する場合、ngrokを使用
+if 'COLAB_GPU' in os.environ:
+  ngrok.kill()
+  # 既存のngrokプロセスをkillする
+  # ngrokに接続し、公開URLを取得する
+  public_url = ngrok.connect(5000)
+  print(f"ngrok URL: {public_url}")
+  run_with_ngrok(app)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
