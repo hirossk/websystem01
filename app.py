@@ -2,8 +2,14 @@ from flask import Flask, render_template, request, redirect
 from models import db, User, Item, Cart  # models.py からインポート
 import hashlib
 from flask import session
+from flask_ngrok import run_with_ngrok
+import os
 
 app = Flask(__name__)
+
+# Google Colaboratoryで実行する場合、ngrokを使用
+if 'COLAB_GPU' in os.environ:
+    run_with_ngrok(app)
 
 app.secret_key = '0000'  # セッションを使用するための秘密鍵を設定
 
