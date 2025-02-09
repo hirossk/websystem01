@@ -1,4 +1,8 @@
-<header class="flex justify-between items-center bg-gray-800 text-white p-4 shadow-md">
+<header class="flex flex-wrap justify-between items-center bg-gray-800 text-white p-4 shadow-md">
     <h1 class="text-xl font-bold">ショッピングサイト</h1>
-    <a href="{{ url_for('logout') }}" class="px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600">ログアウト</a>
+    <div class="flex flex-wrap items-center gap-2 mt-2 md:mt-0">
+        <span class="mr-2">{{ user_name }}さん</span>
+        <a href="{{ url_for('viewcart') }}" class="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 text-center">カートを見る</a>
+        <a href="{{ url_for('logout') }}" class="px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600 text-center">ログアウト</a>
+    </div>
 </header>

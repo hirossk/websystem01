@@ -4,7 +4,12 @@ import hashlib
 from flask import session
 
 app = Flask(__name__)
+
 app.secret_key = '0000'  # セッションを使用するための秘密鍵を設定
+
+# グローバル変数を定義
+global_user_id = None
+global_user_name = None
 
 # 初回リクエストかどうかを判定するフラグ
 first_request_done = False
@@ -25,22 +30,37 @@ def index():
         return render_template('login.html')
     return redirect('/list')
 
+@app.route('/viewcart')
+def viewcart():
+    global global_user_id, global_user_name
+    if global_user_id is None:
+        return redirect('/')
+        
+    user_id = global_user_id
+    user_name = global_user_name
+
+    carts = db.session.query(Cart.quantity, Item.code, Item.name, Item.overview, Item.price, Item.image_path).join(Item, Cart.item_id == Item.id).filter(Cart.user_id == user_id).all()
+    total_price = sum(cart.quantity * cart.price for cart in carts)
+
+    return render_template('cartitem.html', carts=carts, total_price=total_price, user_name=user_name)
+
 @app.route('/list')
 def list_items():
-
-    if session['user_id'] is None:
+    global global_user_id, global_user_name
+    if global_user_id is None:
         return redirect('/')
     
     items = Item.query.all()
-    return render_template('itemlist.html', items=items)
+    return render_template('itemlist.html', items=items, user_name=global_user_name)
 
 @app.route('/cartin')
 def cartin():
-    if session['user_id'] is None:
+    global global_user_id
+    if global_user_id is None:
         return redirect('/')
 
     code = request.args.get('code')
-    user_id = session['user_id']  # 仮のユーザーID、実際にはログインユーザーのIDを使用する
+    user_id = global_user_id
 
     product = Item.query.filter_by(code=int(code)).first()
     cart_item = Cart.query.filter_by(user_id=user_id, item_id=product.id).first()
@@ -52,19 +72,16 @@ def cartin():
         db.session.add(new_cart_item)
 
     db.session.commit()
-
-    carts = db.session.query(Cart.quantity, Item.code, Item.name, Item.overview, Item.price).join(Item, Cart.item_id == Item.id).filter(Cart.user_id == user_id).all()
-    total_price = sum(cart.quantity * cart.price for cart in carts)
-
-    return render_template('cartitem.html', carts=carts, total_price=total_price)
+    return viewcart()
 
 @app.route('/deleteitem', methods=['POST'])
 def deleteitem():
-    if session['user_id'] is None:
+    global global_user_id
+    if global_user_id is None:
         return redirect('/')
     
     code = request.form['code']
-    user_id = session['user_id']  # 仮のユーザーID、実際にはログインユーザーのIDを使用する
+    user_id = global_user_id
 
     product = Item.query.filter_by(code=int(code)).first()
     if product:
@@ -74,13 +91,11 @@ def deleteitem():
             db.session.delete(cart_item)
             db.session.commit()
 
-    carts = db.session.query(Cart.quantity, Item.code, Item.name, Item.overview, Item.price).join(Item, Cart.item_id == Item.id).filter(Cart.user_id == user_id).all()
-    total_price = sum(cart.quantity * cart.price for cart in carts)
-
-    return render_template('cartitem.html', carts=carts, total_price=total_price)
+    return viewcart()
 
 @app.route('/logincheck', methods=['POST'])
 def logincheck():
+    global global_user_id, global_user_name
     email = request.form['email']
     password = request.form['password']
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
@@ -89,16 +104,20 @@ def logincheck():
 
     if user:
         session['user_id'] = user.id
-        print(user.id)
+        session['user_name'] = user.name
+        global_user_id = user.id
+        global_user_name = user.name
         return redirect('/list')
     else:
         return render_template('login.html', error='Invalid email or password')
 
 @app.route('/logout')
 def logout():
+    global global_user_id, global_user_name
     session['user_id'] = None  # セッションから user_id を削除
+    global_user_id = None
+    global_user_name = None
     return redirect('/')
-
 
 if __name__ == '__main__':
     app.run(debug=True)

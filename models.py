@@ -6,6 +6,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    name = db.Column(db.String(100), nullable=False) 
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,6 +15,7 @@ class Item(db.Model):
     overview = db.Column(db.String(200), nullable=False)
     price = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(100), nullable=False)
+    image_path = db.Column(db.String(200), nullable=True) 
 
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
