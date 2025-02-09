@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 from models import db
 from routes import auth_bp, cart_bp, items_bp
 import os
@@ -13,6 +13,10 @@ db.init_app(app)
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(cart_bp, url_prefix='/cart')
 app.register_blueprint(items_bp, url_prefix='/items')
+
+@app.route('/')
+def logout():
+    return redirect('/auth/')
 
 # Google Colab やリモート環境で ngrok を使用
 if 'COLAB_GPU' in os.environ:
