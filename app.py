@@ -5,6 +5,8 @@ import os
 from pyngrok import ngrok
 from flask_ngrok import run_with_ngrok
 
+# from google.colab import output
+
 app = Flask(__name__)
 app.config.from_object("config.Config")
 db.init_app(app)
@@ -20,10 +22,15 @@ def logout():
 
 # Google Colab やリモート環境で ngrok を使用
 if 'COLAB_GPU' in os.environ:
-    ngrok.kill()  # 既存の ngrok プロセスを停止
-    public_url = ngrok.connect(5000)  # ngrokトンネルを開く
-    print(f"ngrok URL: {public_url}")
-    run_with_ngrok(app)
+    from google.colab import output
 
-if __name__ == '__main__':
+    from threading import Thread
+
+    thread = Thread(target=lambda: app.run(port=PROT, debug=True, use_reloader=False))
+    thread.start()
+    # ngrok.kill()  # 既存の ngrok プロセスを停止
+    # public_url = ngrok.connect(5000)  # ngrokトンネルを開く
+    # print(f"ngrok URL: {public_url}")
+    # run_with_ngrok(app)
+elif __name__ == '__main__':
     app.run()
