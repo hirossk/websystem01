@@ -5,3 +5,4 @@ venv/
 ./*.py
 *.cfg
 .tool-versions
+__pycache__/
