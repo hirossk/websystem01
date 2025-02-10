@@ -26,7 +26,6 @@ if 'COLAB_GPU' in os.environ:
     ngrok.kill()  # 既存の ngrok プロセスを停止
     public_url = ngrok.connect(5000)  # ngrokトンネルを開く
     print(f"ngrok URL: {public_url}")
-    run_with_ngrok(app)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
