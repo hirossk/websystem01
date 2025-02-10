@@ -22,16 +22,9 @@ def logout():
 
 # Google Colab やリモート環境で ngrok を使用
 if 'COLAB_GPU' in os.environ:
-    from google.colab import output
-
-    from threading import Thread
-    PORT=5000
-    thread = Thread(target=lambda: app.run(port=PORT, debug=True, use_reloader=False))
-    thread.start()
-    output.serve_kernel_port_as_iframe(PORT)
-    # ngrok.kill()  # 既存の ngrok プロセスを停止
-    # public_url = ngrok.connect(5000)  # ngrokトンネルを開く
-    # print(f"ngrok URL: {public_url}")
-    # run_with_ngrok(app)
+    ngrok.kill()  # 既存の ngrok プロセスを停止
+    public_url = ngrok.connect(5000)  # ngrokトンネルを開く
+    print(f"ngrok URL: {public_url}")
+    run_with_ngrok(app)
 elif __name__ == '__main__':
     app.run()
