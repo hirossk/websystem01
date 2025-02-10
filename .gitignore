@@ -6,3 +6,4 @@ venv/
 *.cfg
 .tool-versions
 __pycache__/
+documents
