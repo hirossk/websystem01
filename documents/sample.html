@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tailwind CSS クラスと出力例 拡張版</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #f3f4f6; /* Tailwind gray-100 */
+    }
+    .example-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .example-table th,
+    .example-table td {
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      vertical-align: middle;
+    }
+    .example-table th {
+      background-color: #f9fafb;
+    }
+    /* クラス名表示部分は背景を白、文字を黒に */
+    code {
+      background-color: #fff;
+      color: #000;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    /* 主なクラス一覧の説明リスト */
+    .class-list li {
+      margin-bottom: 0.5rem;
+    }
+    .class-name {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="p-6">
+  <h1 class="text-3xl font-extrabold mb-6">Tailwind CSS クラスと出力例 拡張版</h1>
+  
+  <!-- サンプル出力テーブル -->
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th class="w-1/2">クラス名</th>
+        <th class="w-1/2">出力結果</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 例1: シンプルなボタン -->
+      <tr>
+        <td><code>bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded</code></td>
+        <td>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            ボタン
+          </button>
+        </td>
+      </tr>
+      <!-- 例2: アウトラインボタン -->
+      <tr>
+        <td><code>bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded</code></td>
+        <td>
+          <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            アウトラインボタン
+          </button>
+        </td>
+      </tr>
+      <!-- 例3: リンク風ボタン（<a>要素） -->
+      <tr>
+        <td><code>bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block</code></td>
+        <td>
+          <a href="#" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block">
+            リンクボタン
+          </a>
+        </td>
+      </tr>
+      <!-- 例4: アイコン付きボタン -->
+      <tr>
+        <td><code>flex items-center bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded</code></td>
+        <td>
+          <button class="flex items-center bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            アイコン付き
+          </button>
+        </td>
+      </tr>
+      <!-- 例5: マウスオーバーで拡大するボタン -->
+      <tr>
+        <td><code>bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transform hover:scale-105 transition duration-300</code></td>
+        <td>
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transform hover:scale-105 transition duration-300">
+            拡大ボタン
+          </button>
+        </td>
+      </tr>
+      <!-- 例6: 中央揃えの見出し -->
+      <tr>
+        <td><code>text-center text-2xl font-bold</code></td>
+        <td>
+          <p class="text-center text-2xl font-bold">中央揃えで大きな見出し</p>
+        </td>
+      </tr>
+      <!-- 例7: パディング、マージン、背景、角丸、影付きボックス -->
+      <tr>
+        <td><code>p-6 m-4 bg-gray-200 rounded-lg shadow-md</code></td>
+        <td>
+          <div class="p-6 m-4 bg-gray-200 rounded-lg shadow-md">
+            パディング、マージン、背景色、角丸、影付きのボックス
+          </div>
+        </td>
+      </tr>
+      <!-- 例8: 点線ボーダー付きボックス -->
+      <tr>
+        <td><code>border-2 border-dashed border-gray-400 p-4</code></td>
+        <td>
+          <div class="border-2 border-dashed border-gray-400 p-4">
+            点線ボーダー付きボックス
+          </div>
+        </td>
+      </tr>
+      <!-- 例9: グラデーションボタン -->
+      <tr>
+        <td><code>bg-gradient-to-r from-blue-400 to-green-400 text-white font-bold py-2 px-6 rounded</code></td>
+        <td>
+          <button class="bg-gradient-to-r from-blue-400 to-green-400 text-white font-bold py-2 px-6 rounded">
+            グラデーションボタン
+          </button>
+        </td>
+      </tr>
+      <!-- 例10: Flexで縦並び中央揃え -->
+      <tr>
+        <td><code>flex flex-col items-center justify-center h-32 bg-yellow-300 rounded</code></td>
+        <td>
+          <div class="flex flex-col items-center justify-center h-32 bg-yellow-300 rounded">
+            <span>縦並び</span>
+            <span>中央揃え</span>
+          </div>
+        </td>
+      </tr>
+      <!-- 例11: Gridレイアウト -->
+      <tr>
+        <td><code>grid grid-cols-3 gap-4</code></td>
+        <td>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-indigo-200 p-4 rounded">1</div>
+            <div class="bg-indigo-300 p-4 rounded">2</div>
+            <div class="bg-indigo-400 p-4 rounded">3</div>
+          </div>
+        </td>
+      </tr>
+      <!-- 例12: ホバーで下線付きリンク -->
+      <tr>
+        <td><code>hover:underline text-blue-600</code></td>
+        <td>
+          <a href="#" class="hover:underline text-blue-600">
+            ホバーで下線付きリンク
+          </a>
+        </td>
+      </tr>
+      <!-- 例13: 無効状態のボタン -->
+      <tr>
+        <td><code>cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed</code></td>
+        <td>
+          <button class="cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            無効状態ボタン
+          </button>
+        </td>
+      </tr>
+      <!-- 例14: レスポンシブなテキストサイズ -->
+      <tr>
+        <td><code>sm:text-lg md:text-xl lg:text-2xl xl:text-3xl</code></td>
+        <td>
+          <p class="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
+            レスポンシブなテキストサイズ
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- 主な Tailwind CSS クラス一覧（各クラスに説明を追加） -->
+  <h2 class="text-2xl font-bold mt-8 mb-4">主な Tailwind CSS クラス一覧（簡単な説明付き）</h2>
+  <ul class="class-list bg-white p-4 rounded shadow space-y-2">
+    <li><span class="class-name">container</span>: コンテンツの幅を制限し、中央寄せにするためのラッパークラス。</li>
+    <li><span class="class-name">mx-auto, my-auto</span>: 水平（mx-auto）または垂直（my-auto）の自動マージンで中央寄せにする。</li>
+    <li><span class="class-name">p-{n}, px-{n}, py-{n}</span>: 全方向（p-）、左右（px-）、上下（py-）のパディングを設定する。</li>
+    <li><span class="class-name">m-{n}, mx-{n}, my-{n}</span>: 全方向（m-）、左右（mx-）、上下（my-）のマージンを設定する。</li>
+    <li><span class="class-name">text-{size}</span>: テキストサイズを調整（例: text-sm, text-lg, text-xl）。</li>
+    <li><span class="class-name">font-{weight}</span>: フォントの太さを設定（例: font-light, font-normal, font-bold）。</li>
+    <li><span class="class-name">bg-{color}</span>: 背景色を設定（例: bg-white, bg-gray-100, bg-blue-500）。</li>
+    <li><span class="class-name">text-{color}</span>: 文字色を設定（例: text-black, text-gray-700）。</li>
+    <li><span class="class-name">border, border-{width}, border-{color}</span>: 枠線の有無、太さ、色を設定する。</li>
+    <li><span class="class-name">rounded, rounded-{size}</span>: 角丸の適用（例: rounded, rounded-lg, rounded-full）。</li>
+    <li><span class="class-name">shadow, shadow-md, shadow-lg</span>: ボックスシャドウを設定し、要素に立体感を与える。</li>
+    <li><span class="class-name">flex, grid, inline-block, block</span>: 表示形式を指定（フレックスボックス、グリッド、インラインブロック、ブロック要素）。</li>
+    <li><span class="class-name">items-center, justify-center</span>: FlexboxやGridでの縦横の中央寄せを実現する。</li>
+    <li><span class="class-name">hover:{utility}</span>: ホバー時に指定のスタイルに変更（例: hover:bg-blue-700）。</li>
+    <li><span class="class-name">transition, duration-{n}, ease-{in|out|in-out}</span>: トランジション効果を設定し、アニメーションの速度やイージングを制御する。</li>
+  </ul>
+</body>
+</html>
