@@ -2,6 +2,7 @@
     <h1 class="text-xl font-bold">ショッピングサイト</h1>
     <div class="flex flex-wrap items-center gap-2 mt-2 md:mt-0">
         <span class="mr-2">{{ user_name }}さん</span>
+        <!-- カテゴリーA(items.catea)へのリンクを追加 -->
         <a href="{{ url_for('cart.viewcart') }}" class="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 text-center">カートを見る</a>
         <a href="{{ url_for('auth.logout') }}" class="px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600 text-center">ログアウト</a>
     </div>

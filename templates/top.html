@@ -7,23 +7,63 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="relative w-full h-screen flex items-center justify-center bg-gray-100">
+    <!-- 
+        - w-full: 要素の幅を100%に設定します。
+        - h-screen: 要素の高さをビューポートの高さの100%に設定します。
+        - flex: 要素にフレックスボックスレイアウトを適用します。
+        - items-center: フレックスアイテムを交差軸（垂直方向）の中央に揃えます。
+        - justify-center: フレックスアイテムを主軸（水平方向）の中央に揃えます。
+    -->
+    
+    <div class="relative bg-gray-100">
         {% include "background.html" %}
 
         <!-- コンテンツ -->
-        <div class="relative text-center px-12">
-            <h1 class="text-7xl font-bold text-white drop-shadow-lg">
-                Welcome to Our Shop
+        <!-- 
+        - text-center: テキストを中央揃えにします。
+        - px-12: 左右のパディングを3remに設定します。
+        -->
+        <div class="relative">
+            <!-- 
+            - text-7xl: テキストサイズを7xlに設定します。
+            - font-bold: フォントを太字に設定します。
+            - text-black: テキストの色を黒に設定します。
+            - drop-shadow-lg: 大きなドロップシャドウを適用します。
+            -->
+            <h1 class="">
+            ようこそショッピングサイトへ！
             </h1>
-            <p class="text-2xl text-white mt-4 drop-shadow-md">
-                Find the best deals on your favorite products
+            <!-- 
+            - text-2xl: テキストサイズを2xlに設定します。
+            - text-black: テキストの色を黒に設定します。
+            - mt-4: 上のマージンを1remに設定します。
+            - drop-shadow-md: 中くらいのドロップシャドウを適用します。
+            -->
+            <p class="">
+            あなたの欲しいものが見つかります！
             </p>
             
+            <!-- 
+            - mt-6: 上のマージンを1.5remに設定します。
+            -->
             <div class="mt-6">
-                <a href="#shop" 
-                   class="bg-blue-600 text-white px-6 py-3 text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300">
-                    Start Shopping
-                </a>
+            <!-- 
+            - bg-blue-600: 背景色を青の600に設定します。
+            - text-white: テキストの色を白に設定します。
+            - px-6: 左右のパディングを1.5remに設定します。
+            - py-3: 上下のパディングを0.75remに設定します。
+            - text-lg: テキストサイズを大に設定します。
+            - font-semibold: フォントをやや太字に設定します。
+            - rounded-full: 要素を丸くします。
+            - shadow-lg: 大きなシャドウを適用します。
+            - hover:bg-blue-700: ホバー時に背景色を青の700に変更します。
+            - transition: トランジションを適用します。
+            - duration-300: トランジションの時間を300msに設定します。
+            -->
+            <a href="#shop" 
+               class="">
+            買い物はこちらから
+            </a>
             </div>
         </div>
     </div>

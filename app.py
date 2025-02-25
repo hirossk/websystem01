@@ -21,11 +21,5 @@ def logout():
     # return redirect('/auth/')
     return render_template('top.html')    
 
-# Google Colab やリモート環境で ngrok を使用
-if 'COLAB_GPU' in os.environ:
-    ngrok.kill()  # 既存の ngrok プロセスを停止
-    public_url = ngrok.connect(5000)  # ngrokトンネルを開く
-    print(f"ngrok URL: {public_url}")
-
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
