@@ -8,12 +8,7 @@
 </head>
 <body>
     <div class="relative w-full h-screen flex items-center justify-center bg-gray-100">
-        <!-- 背景画像 -->
-        <div class="absolute inset-0">
-            <img src="画像URL" 
-                 alt="Shopping Background" 
-                 class="w-full h-full object-cover opacity-80">
-        </div>
+        {% include "background.html" %}
 
         <!-- コンテンツ -->
         <div class="relative text-center px-12">
