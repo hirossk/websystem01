@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template
 from models import db
-from routes import auth_bp, cart_bp, items_bp
+from routes import auth_bp, cart_bp, items_bp, users_bp
 from flask_ngrok import run_with_ngrok
 
 # from google.colab import output
@@ -13,6 +13,7 @@ db.init_app(app)
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(cart_bp, url_prefix='/cart')
 app.register_blueprint(items_bp, url_prefix='/items')
+app.register_blueprint(users_bp, url_prefix='/users')
 
 @app.route('/')
 def logout():
