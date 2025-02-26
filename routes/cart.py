@@ -3,6 +3,7 @@ from models import db, Cart, Item
 
 cart_bp = Blueprint('cart', __name__)
 
+# Cartの中身を表示する
 @cart_bp.route('/view')
 def viewcart():
     if session.get('user_id') is None:
@@ -22,22 +23,21 @@ def viewcart():
 
 @cart_bp.route('/add')
 def add():
+    # ユーザーがログインしているか確認
     if session.get('user_id') is None:
         return redirect('/')
 
+    # リクエストから商品コードを取得
     code = request.args.get('code')
     user_id = session['user_id']
 
+    # 商品コードに基づいて商品をデータベースから取得
     product = Item.query.filter_by(code=int(code)).first()
+    # ユーザーのカートに同じ商品があるか確認
     cart_item = Cart.query.filter_by(user_id=user_id, item_id=product.id).first()
 
-    if cart_item:
-        cart_item.quantity += 1
-    else:
-        new_cart_item = Cart(user_id=user_id, item_id=product.id, quantity=1)
-        db.session.add(new_cart_item)
-
-    db.session.commit()
+    # カートに商品に商品を追加処理
+    
     return redirect('/cart/view')
 
 @cart_bp.route('/delete', methods=['POST'])
