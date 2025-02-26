@@ -43,9 +43,9 @@ else:
 with app.app_context():
     db.create_all()
     users = [
-        # {'email': 'user1@example.com', 'password': 'password1', 'name': 'User One'},
-        # {'email': 'user2@example.com', 'password': 'password2', 'name': 'User Two'},
-        # {'email': 'user3@example.com', 'password': 'password3', 'name': 'User Three'}
+        {'email': 'user1@example.com', 'password': 'password1', 'name': 'User One'},
+        {'email': 'user2@example.com', 'password': 'password2', 'name': 'User Two'},
+        {'email': 'user3@example.com', 'password': 'password3', 'name': 'User Three'}
     ]
 
     for user_data in users:
@@ -55,11 +55,11 @@ with app.app_context():
     print("Database tables recreated.")
 
     items = [
-        # {'code': 1001, 'name': '商品A', 'overview': '商品の概要A', 'price': 1000, 'category': 'カテゴリーA', 'image_path': 'a.png'},
-        # {'code': 1002, 'name': '商品B', 'overview': '商品の概要B', 'price': 2000, 'category': 'カテゴリーB', 'image_path': 'b.png'},
-        # {'code': 1003, 'name': '商品C', 'overview': '商品の概要C', 'price': 3000, 'category': 'カテゴリーA', 'image_path': 'c.png'},
-        # {'code': 1004, 'name': '商品D', 'overview': '商品の概要D', 'price': 4000, 'category': 'カテゴリーC', 'image_path': 'd.png'},
-        # {'code': 1005, 'name': '商品E', 'overview': '商品の概要E', 'price': 5000, 'category': 'カテゴリーB', 'image_path': 'e.png'}
+        {'code': 1001, 'name': '商品A', 'overview': '商品の概要A', 'price': 1000, 'category': 'カテゴリーA', 'image_path': 'a.png'},
+        {'code': 1002, 'name': '商品B', 'overview': '商品の概要B', 'price': 2000, 'category': 'カテゴリーB', 'image_path': 'b.png'},
+        {'code': 1003, 'name': '商品C', 'overview': '商品の概要C', 'price': 10000, 'category': 'カテゴリーA', 'image_path': 'bag.png'},
+        {'code': 1004, 'name': '商品D', 'overview': '商品の概要D', 'price': 40000, 'category': 'カテゴリーC', 'image_path': 'bike1.png'},
+        {'code': 1005, 'name': '商品E', 'overview': '商品の概要E', 'price': 500000, 'category': 'カテゴリーB', 'image_path': 'piano.png'}
     ]
 
     for item_data in items:
@@ -67,9 +67,9 @@ with app.app_context():
         db.session.add(item)
 
     carts = [
-    #   {'user_id': 1, 'item_id': 1, 'quantity': 2},
-    #   {'user_id': 1, 'item_id': 3, 'quantity': 1},
-    #   {'user_id': 2, 'item_id': 2, 'quantity': 3},
+      {'user_id': 1, 'item_id': 1, 'quantity': 2},
+      {'user_id': 1, 'item_id': 3, 'quantity': 1},
+      {'user_id': 2, 'item_id': 2, 'quantity': 3},
     ]
 
     for cart_data in carts:

@@ -17,8 +17,8 @@ app.register_blueprint(users_bp, url_prefix='/users')
 
 @app.route('/')
 def logout():
-    # return redirect('/auth/')
-    return render_template('top.html')    
+    return redirect('/auth/')
+    # return render_template('top.html')    
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)

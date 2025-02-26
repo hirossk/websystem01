@@ -36,6 +36,13 @@ def add():
     # ユーザーのカートに同じ商品があるか確認
     cart_item = Cart.query.filter_by(user_id=user_id, item_id=product.id).first()
 
+    if cart_item:
+        cart_item.quantity += 1
+    else:
+        cart_item = Cart(user_id=user_id, item_id=product.id, quantity=1)
+        db.session.add(cart_item)
+    db.session.commit()
+
     # カートに商品に商品を追加処理
     
     return redirect('/cart/view')
