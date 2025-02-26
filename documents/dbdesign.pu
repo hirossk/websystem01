@@ -1,0 +1,33 @@
+@startuml
+skinparam defaultFontName Courier
+
+entity User {
+    + user_id : INT
+    --
+    email : VARCHAR
+    password : VARCHAR
+    name : VARCHAR
+}
+
+entity Item {
+    + item_id : INT
+    --
+    code : INT
+    name : VARCHAR
+    overview : VARCHAR
+    price : INT
+    category : VARCHAR
+    image_path : VARCHAR
+}
+
+entity Cart {
+    + cart_id : INT
+    --
+    user_id : INT
+    item_id : INT
+    quantity : INT
+}
+
+User ||--o{ Cart : "has a"
+Item ||--o{ Cart : "has a"
+@enduml
