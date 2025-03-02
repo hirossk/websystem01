@@ -1,7 +1,6 @@
 from flask import Flask, redirect, render_template
 from models import db
 from routes import auth_bp, cart_bp, items_bp, users_bp
-from flask_ngrok import run_with_ngrok
 
 # from google.colab import output
 
